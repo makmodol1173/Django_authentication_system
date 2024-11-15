@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 import mysql.connector as sql
 
+
 def login(request):
     if request.method == "POST":
         email = request.POST.get("email")
@@ -17,6 +18,10 @@ def login(request):
         
         data = tuple(cursor.fetchall())
 
-        redirect("/profile")
-    
+        user_email = data[0][2]
+        response = redirect("/profile")
+        response.set_cookie('user_email', user_email, max_age=3600)
+        
+        return response
+     
     return render(request, 'Login.html')
