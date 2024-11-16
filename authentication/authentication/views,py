@@ -1,0 +1,12 @@
+# from django.urls import path
+# from . import views  # Import your views file
+
+# urlpatterns = [
+#     path('login/', views.login, name='login'),         # Existing login URL
+#     path('registration/', views.register, name='registration'),  # Add registration URL
+# ]
+
+from django.shortcuts import render
+
+def register(request):
+    return render(request, 'Registration.html') 

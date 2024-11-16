@@ -10,7 +10,7 @@ def login(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        database_connection = sql.connect(host="localhost",user="root",password="73060694moaz@",database="techjobhub")
+        database_connection = sql.connect(host="localhost",user="root",password="73060694moaz@",database="registration")
         cursor=database_connection.cursor()
 
         query = "SELECT * FROM users WHERE email='{}' AND password ='{}'".format(email, password)
@@ -18,10 +18,9 @@ def login(request):
         
         data = tuple(cursor.fetchall())
 
-        user_email = data[0][2]
-        response = redirect("/profile")
-        response.set_cookie('user_email', user_email, max_age=3600)
-        
-        return response
-     
+        if data: 
+            email, password = data[0][0], data[0][1]
+            if password == password:
+                return redirect('/profile')
+
     return render(request, 'Login.html')
