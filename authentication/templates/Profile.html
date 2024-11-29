@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/profile.js' %}"></script>
+    <script src="{% static 'js/Profile.js' %}"></script>
 </head>
 <body>
     <div class="container">
         <h2>Welcome, {{ user.name }}</h2>
         <p><strong>Email:</strong> {{ user.email }}</p>
-        <a href="{% url 'logout' %}" class="btn">Logout</a>
+        {% comment %} <a href="{% url 'logout' %}" class="btn">Logout</a> {% endcomment %}
     </div>
 </body>
 </html>
