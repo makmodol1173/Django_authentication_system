@@ -1,4 +1,8 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+from django.views.decorators.http import require_POST
+from django.urls import reverse
 import mysql.connector as sql
 
 def profile(request):
@@ -30,3 +34,8 @@ def profile(request):
 
     # If valid, render the profile page
     return render(request, 'Profile.html', {'user': data})
+ 
+def logout(request):
+    response = redirect('login')  # Replace 'login' with the name of your login URL
+    response.delete_cookie('auth_token')  # Remove the auth_token cookie
+    return response
