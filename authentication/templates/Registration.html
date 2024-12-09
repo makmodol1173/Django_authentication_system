@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="container">
         <h2>Register</h2>
         <form method="POST">
@@ -25,13 +32,13 @@
                 <input type="password" name="password" id="password" placeholder="Enter your password" required>
             </div>
             <button type="submit">Register</button>
-            {% if messages %}
+            {% comment %} {% if messages %}
                 <ul>
                     {% for message in messages %}
                         <li>{{ message }}</li>
                     {% endfor %}
                 </ul>
-            {% endif %}
+            {% endif %} {% endcomment %}
         </form>
     </div>
 
